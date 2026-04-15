@@ -12,6 +12,19 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Worst Pothole Cities World Ranking","description":"Ranked list of cities with worst road conditions and pothole damage calculator.","url":"https://varsansri.github.io/worst-pothole-cities/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0"}}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What city has the worst potholes in the world?","acceptedAnswer":{"@type":"Answer","text":"Mumbai, India ranks #1 for worst potholes globally, with a damage score of 9.8/10. The city reports over 10,000 potholes every monsoon season, and the Bombay High Court has intervened over road-condition-related deaths. Detroit, USA ranks #2 with 55,000+ reported potholes annually and $1,800 average per-driver repair cost."}},
+    {"@type":"Question","name":"What city in the USA has the worst roads?","acceptedAnswer":{"@type":"Answer","text":"Detroit, Michigan has the worst roads of any major US city, with drivers spending an average of $1,800 per year on pothole-related repairs — the highest in the nation. Chicago, New Orleans, Kansas City, and Baltimore round out the top 5 worst US cities for road quality."}},
+    {"@type":"Question","name":"How much do potholes cost car owners per year?","acceptedAnswer":{"@type":"Answer","text":"Pothole-related car damage costs American drivers an average of $600–$1,800 per year depending on city. Repairs include tyre damage, wheel alignment, suspension components, and steering damage. Detroit drivers average $1,800/year. Chicago drivers average $1,300/year. Use our calculator above to estimate your city's specific cost based on your car type and mileage."}},
+    {"@type":"Question","name":"What types of car damage do potholes cause?","acceptedAnswer":{"@type":"Answer","text":"Potholes cause: tyre punctures and blowouts, bent or cracked wheel rims, misaligned wheels (requiring realignment), damaged suspension components (struts, shocks, control arms), bent steering components, and undercarriage damage. Luxury and sports cars with low-profile tyres sustain significantly more damage than standard sedans."}},
+    {"@type":"Question","name":"Why does Mumbai have so many potholes?","acceptedAnswer":{"@type":"Answer","text":"Mumbai's potholes are caused by: heavy monsoon rainfall that infiltrates road surfaces, poor drainage infrastructure, extremely heavy traffic volume, budget shortfalls in road maintenance, and contractors using substandard materials. The city fills potholes but monsoon season destroys them faster than repair crews can work."}}
+  ]
+}
+</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -104,6 +117,18 @@ input[type=number]::-webkit-inner-spin-button{opacity:1}
 .sticky-btn{background:var(--accent);color:#fff;font-weight:800;font-size:11px;padding:8px 14px;border-radius:8px;text-decoration:none;white-space:nowrap;-webkit-tap-highlight-color:transparent}
 footer{text-align:center;padding:12px;font-size:11px;color:var(--muted);opacity:.7}
 footer a{color:var(--accent);text-decoration:none}
+.faq-section{margin-top:8px;margin-bottom:4px}
+.faq-title{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:12px;padding:0 2px}
+.faq-list{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.faq-item summary{padding:12px 16px;font-size:13px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;-webkit-tap-highlight-color:transparent}
+.faq-item summary::after{content:'›';font-size:18px;color:var(--accent);transition:transform .2s;flex-shrink:0;margin-left:8px}
+.faq-item[open] summary::after{transform:rotate(90deg)}
+.faq-item p{padding:0 16px 12px;font-size:12px;color:var(--muted);line-height:1.6}
+.seo-text{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:12px}
+.seo-text h2{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--text)}
+.seo-text p{font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:10px}
+.seo-text p:last-child{margin-bottom:0}
 </style>
 </head>
 <body>
@@ -184,6 +209,38 @@ footer a{color:var(--accent);text-decoration:none}
       <button class="sb wa" onclick="shareWA()">💬 WhatsApp</button>
     </div>
   </div>
+
+  <section class="faq-section">
+    <h2 class="faq-title">Worst Pothole Cities — Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>What city has the worst potholes in the world?</summary>
+        <p>Mumbai ranks #1 with a damage score of 9.8/10. Over 10,000 potholes appear every monsoon season. Detroit ranks #2 at 9.4, where average annual repair costs hit $1,800 per driver — the highest in the USA.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What US city has the worst roads?</summary>
+        <p>Detroit has the worst roads of any major US city, with 55,000+ potholes reported annually. Chicago, New Orleans ($1,500/yr), Kansas City, and Baltimore follow. NYC filled 298,000 potholes in 2023 alone.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How much do potholes cost car owners per year?</summary>
+        <p>US drivers lose $600–$1,800/year on average to pothole damage. Damage includes tyre blowouts, bent rims, alignment, suspension components, and steering. Use our calculator above with your city and car type to get a personalised estimate.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What types of car damage do potholes cause?</summary>
+        <p>Tyre punctures and blowouts, bent or cracked rims, wheel misalignment, damaged suspension struts and shocks, bent steering components, and undercarriage damage. Sports cars and luxury vehicles with low-profile tyres suffer the most.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Why does Mumbai have so many potholes?</summary>
+        <p>Heavy monsoon rainfall infiltrates road surfaces, poor drainage, extreme traffic volume, maintenance budget shortfalls, and contractors using substandard materials. The city fills potholes continuously, but monsoon destroys them faster than crews can repair.</p>
+      </details>
+    </div>
+    <div class="seo-text">
+      <h2>World's Worst Pothole Cities — Ranked by Road Damage Score</h2>
+      <p>Potholes are more than an annoyance — they're a silent wealth drain for car owners worldwide. In Detroit alone, the average driver spends $1,800 per year on pothole-related car repairs. In Mumbai, over 10,000 potholes emerge every monsoon season, and the Bombay High Court has intervened multiple times over road-condition deaths. This ranking covers the 20 worst cities globally for road quality, with data on annual damage costs, pothole volume, and underlying causes.</p>
+      <p>The pothole damage calculator lets you estimate your personal annual cost based on your city, car type, and annual mileage. A luxury or sports car in Detroit can easily cost $3,000+ per year in pothole damage. A compact car in a lower-ranked city might cost $200. Your car type matters enormously — low-profile tyres and performance suspension are dramatically more vulnerable to pothole damage than standard factory configurations.</p>
+      <p>Climate plays a major role in road quality: freeze-thaw cycles (Chicago, Moscow) and monsoon flooding (Mumbai, Dhaka, Lagos) are the two primary pothole creation mechanisms. Cities in stable tropical or dry climates generally maintain better road surfaces for longer. Understanding which cities have the worst roads helps you anticipate and budget for vehicle maintenance.</p>
+    </div>
+  </section>
 
   <footer>Data sourced from public road quality reports · <a href="https://t.me/DTB_Academy" target="_blank" rel="noopener">DTB Academy</a></footer>
 </div>
