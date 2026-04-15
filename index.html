@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Worst Pothole Cities in the World — Rankings & Car Damage Calculator</title>
+<meta name="description" content="Ranked list of the world's worst cities for potholes with annual damage costs. Plus a calculator showing how much potholes cost your car per year based on your city.">
+<meta name="keywords" content="worst pothole cities world, pothole damage calculator, worst roads in the world, pothole car damage cost, worst city roads ranking, road quality cities, pothole cities list 2024">
+<link rel="canonical" href="https://varsansri.github.io/worst-pothole-cities/">
+<meta property="og:title" content="Worst Pothole Cities in the World — Rankings & Damage Calculator">
+<meta property="og:description" content="See the world's worst cities for potholes. Calculate how much road damage costs your car per year. Free, data-backed.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Worst Pothole Cities World Ranking","description":"Ranked list of cities with worst road conditions and pothole damage calculator.","url":"https://varsansri.github.io/worst-pothole-cities/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0"}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;--surface:#111118;--surface2:#181820;
+  --accent:#ff6b35;--accent-dim:rgba(255,107,53,0.09);--accent-border:rgba(255,107,53,0.28);
+  --text:#efefef;--muted:#6b6b80;--border:rgba(255,255,255,0.07);
+  --green:#00e87a;--green-dim:rgba(0,232,122,0.10);
+  --yellow:#ffd93d;--yellow-dim:rgba(255,217,61,0.10);
+  --red:#ff4d4d;--red-dim:rgba(255,77,77,0.10);
+  --radius:14px;--ease:0.2s ease;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;padding-bottom:76px;line-height:1.5}
+.wrap{max-width:520px;margin:0 auto;padding:16px 14px 32px}
+.header{text-align:center;padding:22px 0 18px}
+.badge{display:inline-block;background:var(--accent-dim);border:1px solid var(--accent-border);color:var(--accent);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:14px}
+h1{font-size:clamp(19px,5vw,26px);font-weight:800;line-height:1.25;margin-bottom:8px}
+h1 .hl{color:var(--accent)}
+.tagline{color:var(--muted);font-size:13px;max-width:320px;margin:0 auto}
+h2{font-size:13px;color:var(--muted);font-weight:400;margin-top:4px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:20px 0 12px}
+/* Top 3 podium */
+.podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:16px}
+.podium-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center}
+.podium-card.p1{border-color:rgba(255,215,0,0.4);background:rgba(255,215,0,0.06)}
+.podium-card.p2{border-color:rgba(192,192,192,0.35);background:rgba(192,192,192,0.05)}
+.podium-card.p3{border-color:rgba(205,127,50,0.4);background:rgba(205,127,50,0.06)}
+.p-rank{font-size:22px;margin-bottom:4px}
+.p-city{font-size:12px;font-weight:800;color:var(--text);margin-bottom:2px}
+.p-country{font-size:10px;color:var(--muted);margin-bottom:6px}
+.p-score{font-size:18px;font-weight:900;color:var(--accent)}
+.p-slabel{font-size:9px;color:var(--muted)}
+/* Rankings table */
+.rank-table{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.rt-header{display:grid;grid-template-columns:32px 1fr 60px 70px;gap:6px;padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--border);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.rt-row{display:grid;grid-template-columns:32px 1fr 60px 70px;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background var(--ease);-webkit-tap-highlight-color:transparent}
+.rt-row:last-child{border-bottom:none}
+.rt-row:active{background:var(--surface2)}
+.rt-row.expanded{background:var(--surface2)}
+.rt-num{font-size:12px;font-weight:700;color:var(--muted)}
+.rt-city{font-size:13px;font-weight:700;color:var(--text)}
+.rt-country{font-size:10px;color:var(--muted)}
+.rt-score-bar{position:relative;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;margin-top:4px}
+.rt-score-fill{height:100%;border-radius:3px;background:var(--accent)}
+.rt-score-num{font-size:12px;font-weight:700;color:var(--accent)}
+.rt-damage{font-size:12px;font-weight:700;color:var(--red)}
+.rt-expand{display:none;padding:8px 14px 12px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);line-height:1.6;background:var(--surface2)}
+.rt-expand.show{display:block}
+.rt-expand strong{color:var(--text)}
+/* Filter */
+.filter-row{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px;-webkit-overflow-scrolling:touch}
+.filter-btn{flex-shrink:0;padding:6px 12px;border:1px solid var(--border);border-radius:20px;background:var(--surface);color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all var(--ease)}
+.filter-btn.active{background:var(--accent-dim);border-color:var(--accent-border);color:var(--accent)}
+/* Calculator */
+.calc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:14px}
+.card-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.ig{margin-bottom:14px}
+.il{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+select,input[type=number]{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;padding:10px 14px;outline:none;transition:border-color var(--ease);-webkit-appearance:none;appearance:none}
+select:focus,input[type=number]:focus{border-color:var(--accent-border)}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='%23666'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px}
+input[type=number]::-webkit-inner-spin-button{opacity:1}
+.divider{border:none;border-top:1px solid var(--border);margin:6px 0 16px}
+.calc-btn{width:100%;background:var(--accent);color:#fff;font-size:14px;font-weight:800;padding:13px;border:none;border-radius:var(--radius);cursor:pointer;transition:opacity var(--ease),transform var(--ease);-webkit-tap-highlight-color:transparent}
+.calc-btn:active{opacity:.85;transform:scale(.98)}
+.calc-result{display:none;margin-top:14px;animation:fadeUp .3s ease}
+.calc-result.show{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.cr-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cr-item{background:var(--surface2);border-radius:10px;padding:12px}
+.cr-item .cl{font-size:10px;color:var(--muted);margin-bottom:4px}
+.cr-item .cv{font-size:17px;font-weight:700}
+.damage-verdict{background:var(--red-dim);border:1px solid rgba(255,77,77,.25);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--red);margin-top:10px;line-height:1.6}
+.tg-cta{background:linear-gradient(135deg,rgba(255,107,53,.07),rgba(255,107,53,.01));border:1px solid var(--accent-border);border-radius:var(--radius);padding:18px;margin-bottom:12px}
+.tg-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.tg-body{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.tg-body strong{color:var(--accent)}
+.tg-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:#fff;font-weight:800;font-size:13px;padding:12px 20px;border-radius:9px;text-decoration:none;transition:opacity var(--ease);-webkit-tap-highlight-color:transparent}
+.tg-btn:active{opacity:.85}
+.share-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px}
+.share-label{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.share-btns{display:flex;gap:8px}
+.sb{flex:1;padding:10px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text);transition:all var(--ease);text-align:center;-webkit-tap-highlight-color:transparent}
+.sb.wa{background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.25);color:#25d366}
+.sb.cp{color:var(--accent);border-color:var(--accent-border)}
+.sb:active{transform:scale(.97)}
+.sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,15,.96);border-top:1px solid var(--accent-border);padding:10px 16px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:200}
+.sticky .st{font-size:11px;color:var(--muted);flex:1;line-height:1.4}
+.sticky .st strong{color:var(--accent);font-size:12px;display:block}
+.sticky-btn{background:var(--accent);color:#fff;font-weight:800;font-size:11px;padding:8px 14px;border-radius:8px;text-decoration:none;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+footer{text-align:center;padding:12px;font-size:11px;color:var(--muted);opacity:.7}
+footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="header">
+    <div class="badge">🕳️ Road Quality Data</div>
+    <h1>World's <span class="hl">Worst Pothole</span> Cities</h1>
+    <h2>Which cities have the worst roads in the world?</h2>
+    <p class="tagline">Rankings, damage stats, and a calculator showing how much potholes cost your car per year.</p>
+  </header>
+
+  <div class="section-label">🏆 Top 3 Worst Offenders</div>
+  <div class="podium">
+    <div class="podium-card p2"><div class="p-rank">🥈</div><div class="p-city">Detroit</div><div class="p-country">USA</div><div class="p-score">9.4</div><div class="p-slabel">damage score</div></div>
+    <div class="podium-card p1"><div class="p-rank">🥇</div><div class="p-city">Mumbai</div><div class="p-country">India</div><div class="p-score">9.8</div><div class="p-slabel">damage score</div></div>
+    <div class="podium-card p3"><div class="p-rank">🥉</div><div class="p-city">Lagos</div><div class="p-country">Nigeria</div><div class="p-score">9.2</div><div class="p-slabel">damage score</div></div>
+  </div>
+
+  <div class="section-label">Full Rankings — Top 20 Cities</div>
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="filterCities('all',this)">All Regions</button>
+    <button class="filter-btn" onclick="filterCities('Americas',this)">Americas</button>
+    <button class="filter-btn" onclick="filterCities('Europe',this)">Europe</button>
+    <button class="filter-btn" onclick="filterCities('Asia',this)">Asia</button>
+    <button class="filter-btn" onclick="filterCities('Africa',this)">Africa</button>
+  </div>
+  <div class="rank-table">
+    <div class="rt-header"><span>#</span><span>City</span><span>Score</span><span>$/yr damage</span></div>
+    <div id="rankList"></div>
+  </div>
+
+  <div class="calc-card">
+    <div class="card-label">💸 Pothole Damage Calculator</div>
+    <div class="ig">
+      <div class="il"><span>Select Your City</span></div>
+      <select id="calcCity">
+        <option value="">— Choose your city —</option>
+      </select>
+    </div>
+    <div class="ig">
+      <div class="il"><span>Car Type</span></div>
+      <select id="carType">
+        <option value="1.0">Compact / Hatchback</option>
+        <option value="1.2" selected>Sedan / Saloon</option>
+        <option value="1.4">SUV / Crossover</option>
+        <option value="1.6">Sports Car / Low Profile</option>
+        <option value="1.8">Luxury / Performance Car</option>
+        <option value="2.0">Supercar / Hypercar</option>
+      </select>
+    </div>
+    <div class="ig">
+      <div class="il"><span>Annual Mileage</span><span style="opacity:.6;font-size:11px">km/year</span></div>
+      <input type="number" id="mileage" placeholder="e.g. 15000" value="15000" min="1000" inputmode="decimal">
+    </div>
+    <hr class="divider">
+    <button class="calc-btn" onclick="calcDamage()">Calculate My Annual Pothole Cost →</button>
+    <div class="calc-result" id="calcResult">
+      <div class="cr-grid">
+        <div class="cr-item"><div class="cl">Annual Damage Cost</div><div class="cv" id="crAnnual" style="color:var(--red)">—</div></div>
+        <div class="cr-item"><div class="cl">5-Year Total</div><div class="cv" id="cr5yr" style="color:var(--red)">—</div></div>
+        <div class="cr-item"><div class="cl">Cost Per 100km</div><div class="cv" id="crPer100">—</div></div>
+        <div class="cr-item"><div class="cl">City Risk Grade</div><div class="cv" id="crGrade">—</div></div>
+      </div>
+      <div class="damage-verdict" id="damageVerdict"></div>
+    </div>
+  </div>
+
+  <div class="tg-cta">
+    <div class="tg-title">Bad roads cost money. So does not investing.</div>
+    <div class="tg-body">While potholes drain your car budget, <strong>smart money moves</strong> can more than make up for it. Join DTB Academy for <strong>free trading signals and financial strategies</strong> on Telegram.</div>
+    <a href="https://t.me/DTB_Academy" target="_blank" rel="noopener noreferrer" class="tg-btn">📊 Join DTB Academy Free →</a>
+  </div>
+
+  <div class="share-card">
+    <div class="share-label">Share this ranking</div>
+    <div class="share-btns">
+      <button class="sb cp" onclick="copyLink(this)">📋 Copy Link</button>
+      <button class="sb wa" onclick="shareWA()">💬 WhatsApp</button>
+    </div>
+  </div>
+
+  <footer>Data sourced from public road quality reports · <a href="https://t.me/DTB_Academy" target="_blank" rel="noopener">DTB Academy</a></footer>
+</div>
+
+<div class="sticky">
+  <div class="st"><strong>📊 DTB Academy — Free</strong>Trading signals & money strategies →</div>
+  <a href="https://t.me/DTB_Academy" target="_blank" rel="noopener noreferrer" class="sticky-btn">Join Free</a>
+</div>
+
+<script>
+const cities = [
+  {rank:1,city:"Mumbai",country:"India",region:"Asia",score:9.8,damage:850,potholes:"10,000+ per monsoon season",detail:"Mumbai's roads are destroyed every year by monsoon rains. The city reports over 10,000 potholes annually. In 2023, the Bombay High Court intervened after deaths linked to road conditions."},
+  {rank:2,city:"Detroit",country:"USA",region:"Americas",score:9.4,damage:1800,potholes:"55,000+ reported annually",detail:"Detroit has the worst roads of any major US city. Decades of budget shortfalls left infrastructure crumbling. Average driver spends $1,800/year on pothole-related repairs — highest in the USA."},
+  {rank:3,city:"Lagos",country:"Nigeria",region:"Africa",score:9.2,damage:720,potholes:"Widespread across 20 LGAs",detail:"Nigeria's largest city suffers from chronic road underfunding. Flooding and heavy commercial traffic destroy roads faster than repairs can happen. Many roads have been impassable for years."},
+  {rank:4,city:"New Orleans",country:"USA",region:"Americas",score:9.0,damage:1500,potholes:"45,000+ reported",detail:"Built below sea level, New Orleans faces constant ground shifting and flooding. Roads crack and sink regularly. The city has spent over $150M on road repairs but the problem persists."},
+  {rank:5,city:"Nairobi",country:"Kenya",region:"Africa",score:8.8,damage:600,potholes:"Thousands across CBD and suburbs",detail:"Rapid urbanization outpaced road infrastructure. Heavy matatu and truck traffic accelerates deterioration. Some routes in industrial areas are completely impassable after heavy rains."},
+  {rank:6,city:"Chicago",country:"USA",region:"Americas",score:8.7,damage:1300,potholes:"30,000–40,000 per year",detail:"Chicago's famous freeze-thaw cycles destroy asphalt faster than anywhere else in the Midwest. The city fills hundreds of thousands of potholes annually — the same ones reappear each spring."},
+  {rank:7,city:"Dhaka",country:"Bangladesh",region:"Asia",score:8.6,damage:480,potholes:"Pervasive city-wide",detail:"One of the world's most densely populated cities with severely underfunded road maintenance. Monsoon season creates new potholes faster than they can be filled. Traffic is worsened significantly."},
+  {rank:8,city:"Karachi",country:"Pakistan",region:"Asia",score:8.5,damage:390,potholes:"City-wide deterioration",detail:"Pakistan's financial capital has roads described by residents as 'craters'. Political disputes over maintenance funding have left major arteries in dangerous condition for years."},
+  {rank:9,city:"Johannesburg",country:"South Africa",region:"Africa",score:8.3,damage:650,potholes:"Declared road crisis in 2022",detail:"Joburg declared a road pothole crisis in 2022. A R3.5 billion backlog in road maintenance. Some suburbs have roads that haven't been properly maintained in over a decade."},
+  {rank:10,city:"Kansas City",country:"USA",region:"Americas",score:8.2,damage:1100,potholes:"22,000+ reported per year",detail:"Extreme temperature swings between seasons cause rapid road deterioration. Kansas City consistently ranks in the bottom 10% for US road quality. Residents file thousands of damage claims yearly."},
+  {rank:11,city:"São Paulo",country:"Brazil",region:"Americas",score:8.0,damage:520,potholes:"100,000+ estimated metro area",detail:"Brazil's largest city has over 100,000 potholes estimated across the metropolitan area. Heavy rainfall and aging infrastructure combine to create chronic road failure. Traffic delays cost billions annually."},
+  {rank:12,city:"Cairo",country:"Egypt",region:"Africa",score:7.9,damage:410,potholes:"Widespread outer districts",detail:"Rapid population growth outpaced infrastructure investment. Outer districts and industrial zones have severe road damage. Downtown roads fare better due to tourism pressure on maintenance."},
+  {rank:13,city:"Moscow",country:"Russia",region:"Europe",score:7.8,damage:900,potholes:"Thousands post-winter",detail:"Russia's extreme winters (-30°C) destroy roads annually. Despite significant investment in Moscow's roads, the freeze-thaw damage cycle means new potholes appear every spring like clockwork."},
+  {rank:14,city:"Baltimore",country:"USA",region:"Americas",score:7.7,damage:1200,potholes:"18,000+ reported",detail:"Consistently rated among America's worst cities for road quality. Heavy snowfall, aging infrastructure, and budget constraints leave many streets in dangerous condition."},
+  {rank:15,city:"Bucharest",country:"Romania",region:"Europe",score:7.5,damage:650,potholes:"Widespread inner city",detail:"Romanian capital has notoriously poor roads despite EU funding. Construction corruption scandals have meant road repairs often fail within months. Drivers navigate potholes daily."},
+  {rank:16,city:"Jakarta",country:"Indonesia",region:"Asia",score:7.4,damage:430,potholes:"Flooding causes annual damage",detail:"Regular flooding across the low-lying city destroys road surfaces repeatedly. Despite being the capital (until recently), roads outside the central business district are in poor condition."},
+  {rank:17,city:"Manila",country:"Philippines",region:"Asia",score:7.3,damage:380,potholes:"Typhoon season wipes roads",detail:"Annual typhoon season systematically destroys road surfaces. Limited budget and political issues delay repairs. Some roads in outer Quezon City areas become impassable during wet season."},
+  {rank:18,city:"Lusaka",country:"Zambia",region:"Africa",score:7.2,damage:340,potholes:"City-wide chronic issue",detail:"Zambia's capital has struggled with road maintenance for decades. Rains wash out repairs almost immediately due to poor drainage. International aid has funded some improvements in the CBD."},
+  {rank:19,city:"London",country:"UK",region:"Europe",score:6.8,damage:780,potholes:"1M+ nationally per year",detail:"Surprising entry — UK roads collectively have over 1 million reported potholes nationally. London's Victorian-era infrastructure underneath modern roads leads to expensive, recurring damage."},
+  {rank:20,city:"New York",country:"USA",region:"Americas",score:6.5,damage:900,potholes:"298,000 filled in 2023",detail:"NYC filled 298,000 potholes in 2023 alone. The sheer volume of traffic and aging underground infrastructure make road maintenance a constant battle. Brooklyn and Queens are worst affected."},
+];
+
+let activeFilter = 'all';
+
+function renderList(filter){
+  const filtered = filter === 'all' ? cities : cities.filter(c => c.region === filter);
+  const list = document.getElementById('rankList');
+  list.innerHTML = '';
+  filtered.forEach((c, i) => {
+    const row = document.createElement('div');
+    row.className = 'rt-row';
+    row.innerHTML = `
+      <span class="rt-num">${c.rank}</span>
+      <span>
+        <div class="rt-city">${c.city}</div>
+        <div class="rt-country">${c.country} · ${c.region}</div>
+        <div class="rt-score-bar"><div class="rt-score-fill" style="width:${c.score*10}%"></div></div>
+      </span>
+      <span class="rt-score-num">${c.score}</span>
+      <span class="rt-damage">$${c.damage.toLocaleString()}</span>`;
+    const detail = document.createElement('div');
+    detail.className = 'rt-expand';
+    detail.innerHTML = `<strong>Potholes:</strong> ${c.potholes}<br><br>${c.detail}`;
+    row.appendChild(detail);
+    row.onclick = () => {
+      const isOpen = detail.classList.contains('show');
+      document.querySelectorAll('.rt-expand').forEach(d => d.classList.remove('show'));
+      document.querySelectorAll('.rt-row').forEach(r => r.classList.remove('expanded'));
+      if (!isOpen) { detail.classList.add('show'); row.classList.add('expanded'); }
+    };
+    list.appendChild(row);
+  });
+}
+renderList('all');
+
+// Populate calculator city dropdown
+const calcCity = document.getElementById('calcCity');
+cities.forEach(c => {
+  const opt = document.createElement('option');
+  opt.value = c.score + '|' + c.damage + '|' + c.city;
+  opt.textContent = `${c.city}, ${c.country}`;
+  calcCity.appendChild(opt);
+});
+
+function filterCities(region, btn){
+  activeFilter = region;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList(region);
+}
+
+function calcDamage(){
+  const cityVal = document.getElementById('calcCity').value;
+  if (!cityVal){ document.getElementById('calcCity').style.borderColor='#ff4d4d'; setTimeout(()=>document.getElementById('calcCity').style.borderColor='',1500); return; }
+  const [score, baseDmg, cityName] = cityVal.split('|');
+  const carMult = parseFloat(document.getElementById('carType').value);
+  const mileage = parseFloat(document.getElementById('mileage').value) || 15000;
+  const mileageMult = mileage / 15000;
+  const annual = Math.round(parseFloat(baseDmg) * carMult * mileageMult);
+  const fiveYr  = annual * 5;
+  const per100  = ((annual / mileage) * 100).toFixed(2);
+
+  let grade, gradeColor;
+  const s = parseFloat(score);
+  if      (s >= 9) { grade='F — Catastrophic'; gradeColor='#ff4d4d'; }
+  else if (s >= 8) { grade='D — Very Bad';     gradeColor='#ff6b35'; }
+  else if (s >= 7) { grade='C — Poor';         gradeColor='#ffd93d'; }
+  else             { grade='C+ — Below Avg';   gradeColor='#ffd93d'; }
+
+  document.getElementById('crAnnual').textContent = '$'+annual.toLocaleString()+'/yr';
+  document.getElementById('cr5yr').textContent    = '$'+fiveYr.toLocaleString();
+  document.getElementById('crPer100').textContent = '$'+per100+'/100km';
+  document.getElementById('crGrade').textContent  = grade;
+  document.getElementById('crGrade').style.color  = gradeColor;
+  document.getElementById('damageVerdict').textContent =
+    `In ${cityName}, your ${document.getElementById('carType').options[document.getElementById('carType').selectedIndex].text.split('/')[0].trim()} is estimated to cost you $${annual.toLocaleString()} per year in pothole-related repairs — tyres, alignment, suspension, and wheel damage. Over 5 years, that's $${fiveYr.toLocaleString()} lost to bad roads.`;
+
+  const cr = document.getElementById('calcResult');
+  cr.classList.add('show');
+  setTimeout(()=>cr.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+}
+
+function copyLink(btn){
+  navigator.clipboard.writeText(window.location.href).then(()=>{
+    btn.textContent='✓ Copied!';
+    btn.style.cssText='background:rgba(255,107,53,.1);border-color:rgba(255,107,53,.3);color:#ff6b35';
+    setTimeout(()=>{btn.textContent='📋 Copy Link';btn.style.cssText='';},2200);
+  });
+}
+function shareWA(){
+  const msg = encodeURIComponent('Check out the world\'s worst pothole cities — and how much they cost your car per year: '+window.location.href+' 🕳️🚗');
+  window.open('https://wa.me/?text='+msg,'_blank');
+}
+</script>
+</body>
+</html>
